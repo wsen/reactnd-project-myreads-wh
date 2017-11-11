@@ -22,13 +22,13 @@ class ListBooks extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
               {shelf.id === "currentlyReading" && currentlyReadingList.map((book) => (
-                <BookItem key={book.id} book={book} onMoveShelf={this.props.onMoveShelf}/>
+                <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
               ))}
               {shelf.id === "wantToRead" && wantToReadList.map((book) => (
-                <BookItem key={book.id} book={book} onMoveShelf={this.props.onMoveShelf}/>
+                <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
               ))}
               {shelf.id === "read" && readList.map((book) => (
-                <BookItem key={book.id} book={book} onMoveShelf={this.props.onMoveShelf}/>
+                <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
               ))}
               </ol>
             </div>
