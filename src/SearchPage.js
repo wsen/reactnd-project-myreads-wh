@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
-class SearchPage extends React.Component {
+class SearchPage extends Component {
 
   render() {
     //{this.state.showSearchPage ? ()}
@@ -9,7 +9,7 @@ class SearchPage extends React.Component {
         <div className="search-books">
           <div className="search-books-bar">
             <Link className="close-search-link" to="/">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+              Close
             </Link>
             <div className="search-books-input-wrapper">
               {/*
