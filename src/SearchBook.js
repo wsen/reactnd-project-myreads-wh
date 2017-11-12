@@ -6,16 +6,30 @@ import BookItem from "./BookItem";
 class SearchBook extends Component {
 
   state = {
-    foundBooks: []
+    foundBooks: [],
+    searchedBooks: [],
+    query: ""
   }
 
   componentDidMount() {
     //BooksAPI.getAll().then(data => {
            //console.log(data);
     BooksAPI.getAll().then(foundBooks => {
-      this.setState({ foundBooks });
+      //this.setState({ foundBooks });
+      this.setState( state => { state.foundBooks = foundBooks });
     })
   }
+
+   searchBooks = query => {
+     let result = [];
+     let searchTerm = query.toLowerCase();
+     if(query)
+             result = this.state.foundBooks.filter(book => book.title.toLowerCase().includes(searchTerm));
+     this.setState( state => {
+             state.searchedBooks = result;
+             state.query = query;
+     });
+   }
 
   render() {
     //{this.state.showSearchPage ? ()}
@@ -25,14 +39,17 @@ class SearchBook extends Component {
             <Link className="close-search" to="/" />
 
             <div className="search-books-input-wrapper">
-
-              <input type="text" placeholder="Search by title or author"/>
-
+               <input
+                 type="text"
+                 placeholder="Search by title or author"
+                 value={this.state.query}
+                 onChange={ e => {this.searchBooks(e.target.value)}}
+               />
             </div>
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-              {this.state.foundBooks.map((book) => (
+              {this.state.searchedBooks.map((book) => (
                 <BookItem key={book.title} book={book}/>
               ))}
             </ol>
