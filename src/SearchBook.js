@@ -6,11 +6,12 @@ import BookItem from "./BookItem";
 class SearchBook extends Component {
 
   state = {
-    foundBooks: [],
+    //foundBooks: [],
     searchedBooks: [],
     query: ""
   }
 
+/*
   componentDidMount() {
     //BooksAPI.getAll().then(data => {
            //console.log(data);
@@ -19,16 +20,17 @@ class SearchBook extends Component {
       this.setState( state => { state.foundBooks = foundBooks });
     })
   }
+*/
 
    searchBooks = query => {
-     let result = [];
-     let searchTerm = query.toLowerCase();
      if(query)
-             result = this.state.foundBooks.filter(book => book.title.toLowerCase().includes(searchTerm));
-     this.setState( state => {
-             state.searchedBooks = result;
-             state.query = query;
-     });
+      BooksAPI.search(query,10).then( result => {
+        let searchedBooks = Array.from(result);
+        this.setState( state => {
+          state.searchedBooks = searchedBooks;
+        });
+     })
+     this.setState( state => ({ query: query }));
    }
 
   render() {
@@ -50,7 +52,7 @@ class SearchBook extends Component {
           <div className="search-books-results">
             <ol className="books-grid">
               {this.state.searchedBooks.map((book) => (
-                <BookItem key={book.title} book={book}/>
+                <BookItem key={book.id} book={book}/>
               ))}
             </ol>
 
