@@ -47,6 +47,29 @@ class App extends React.Component {
     book.shelf = value;
     this.setState(this.state);
   }
+
+//from tmmgeek 31072017
+moveBook = (book, shelf) => {
+  book.shelf = shelf;
+  BooksAPI.update({id: book.id}, shelf).then(() => {
+    let books = this.state.books;
+    let bookInData = books.find((dataBook) => {
+      return dataBook.id === book.id;
+    });
+    if (bookInData) {
+      books = books.map((mapBook) => {
+        if (mapBook.id === book.id) {
+          mapBook.shelf = shelf
+        };
+        return mapBook;
+      })
+    } else {
+    // what does the ...books mean?
+      books = [...books, book]
+    };
+    this.setState({ books });
+  });
+};
 */
 
   moveToShelf = (e,book) => {

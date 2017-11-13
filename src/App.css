@@ -103,6 +103,27 @@ body, .app {
   padding: 80px 10px 20px;
 }
 
+/* added w_sen */
+.search-keywords {
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.search-keyword {
+  margin: 0.5em;
+  padding: 0 0.5em;
+  background-color: #60ac5d;
+  border-radius: 0.5em;
+}
+
+.search-keyword:hover {
+  background: greenyellow;
+  cursor: pointer;
+}
+
+
 /* books grid */
 
 .books-grid {
