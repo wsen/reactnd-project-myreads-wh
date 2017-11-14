@@ -31,7 +31,6 @@ class SearchBook extends Component {
           state.searchedBooks = searchedBooks;
         });
      })
-     //this.setState( state => ({ query: query }));
      this.setState({ query: query});
    }
 
@@ -57,14 +56,14 @@ class SearchBook extends Component {
             </div>
           </div>
          <div className="search-keywords">
-                 {this.state.keywords.map( (keyword,index) => (
-                    <p key={index} className="search-keyword" onClick={this.searchKeywords}>{keyword}</p>
-                 ))}
+           {this.state.keywords.map( (keyword,index) => (
+              <p key={index} className="search-keyword" onClick={this.searchKeywords}>{keyword}</p>
+           ))}
          </div>
          {this.state.query && <div className="search-books-results">
             <ol className="books-grid">
-              {this.state.searchedBooks.map((book) => (
-                <BookItem key={book.id} book={book}/>
+              {this.state.searchedBooks.map((book,index) => (
+                <BookItem key={index} book={book} onMoveShelf={this.props.onMoveToShelf}/>
               ))}
             </ol>
          </div>

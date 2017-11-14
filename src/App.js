@@ -7,12 +7,6 @@ import SearchBook from './SearchBook'
 
 class App extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
      books: [
        /*
       {
@@ -40,37 +34,6 @@ class App extends React.Component {
        }
      ]
   }
-
-/*
-  moveToShelf = (e,book) => {
-    let value = e.target.value;
-    book.shelf = value;
-    this.setState(this.state);
-  }
-
-//from tmmgeek 31072017
-moveBook = (book, shelf) => {
-  book.shelf = shelf;
-  BooksAPI.update({id: book.id}, shelf).then(() => {
-    let books = this.state.books;
-    let bookInData = books.find((dataBook) => {
-      return dataBook.id === book.id;
-    });
-    if (bookInData) {
-      books = books.map((mapBook) => {
-        if (mapBook.id === book.id) {
-          mapBook.shelf = shelf
-        };
-        return mapBook;
-      })
-    } else {
-    // what does the ...books mean?
-      books = [...books, book]
-    };
-    this.setState({ books });
-  });
-};
-*/
 
   moveToShelf = (e,book) => {
     let shelf = e.target.value;
@@ -109,11 +72,16 @@ moveBook = (book, shelf) => {
             books={this.state.books} shelves={this.state.shelves} onMoveToShelf={this.moveToShelf}
           />
         )}/>
-        <Route exact path="/search" component={SearchBook}/>
+        <Route path="/search" render={({ history }) => (
+          <SearchBook onMoveToShelf={(e,book) => {
+            this.moveToShelf(e,book);
+          }}/>
+        )}/>
       </div>
     )//return
   }//render
 
 }//class App
+/*78: history.push("/"); //uncomment, if route should go back to home */
 
 export default App
