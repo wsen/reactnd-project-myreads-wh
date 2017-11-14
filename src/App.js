@@ -71,10 +71,13 @@ class App extends React.Component {
           />
         )}/>
         <Route path="/search" render={({ history }) => (
-          <SearchBook onMoveToShelf={(e,book) => {
-            this.moveToShelf(e,book);
+          <SearchBook
+            books={this.state.books}
+            onMoveToShelf={(e,book) => {
+              this.moveToShelf(e,book);
           }}/>
-        )}/>
+        )}
+        />
       </div>
     )//return
   }//render
