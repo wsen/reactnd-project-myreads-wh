@@ -40,8 +40,8 @@ class App extends React.Component {
     this.setState(state => {
       if(!this.state.books.map(book => book.id).includes(book.id)){
           book.shelf = shelf;
-          this.state.books.push(book);
-          this.setState(this.state);
+          let copyBooks = Object.assign([], this.state.books).concat(book);
+          this.setState({books: copyBooks});
       } else if (shelf === "none") {
         book.shelf = shelf;
         let books = this.state.books.filter(book => book.shelf !== shelf);
