@@ -59,23 +59,20 @@ class App extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks
-            books={this.state.books} shelves={this.state.shelves} onMoveToShelf={this.moveToShelf}
-          />
+          <ListBooks books={this.state.books} shelves={this.state.shelves} onMoveToShelf={this.moveToShelf}/>
         )}/>
         <Route path="/search" render={({ history }) => (
           <SearchBook
             books={this.state.books}
             onMoveToShelf={(e,book) => {
               this.moveToShelf(e,book);
-          }}/>
+            }}
+          />
         )}
         />
       </div>
-    )//return
-  }//render
-
-}//class App
-/*78: history.push("/"); //uncomment, if route should go back to home */
+    )
+  }
+}
 
 export default App

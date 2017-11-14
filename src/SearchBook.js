@@ -6,7 +6,6 @@ import BookItem from "./BookItem";
 class SearchBook extends Component {
 
     state = {
-      //foundBooks: [],
       searchedBooks: [],
       booksIDOnShelf: [],
       booksOnShelf: [],
@@ -49,12 +48,12 @@ class SearchBook extends Component {
     this.searchBooks(query,books, booklist);
    }
 
-  render() {
+   render() {
     const  {booksIDOnShelf, booksOnShelf } = this.state;
     return(
         <div className="search-books">
           <div className="search-books-bar">
-            <Link className="close-search" to="/" />
+            <Link className="close-search" to="/">Close</Link>
 
             <div className="search-books-input-wrapper">
                <input id="searchInput"
@@ -73,14 +72,14 @@ class SearchBook extends Component {
          {this.state.query && <div className="search-books-results">
             <ol className="books-grid">
               {this.state.searchedBooks.map((book,index) => (
-                <BookItem key={index} book={book} onMoveShelf={this.props.onMoveToShelf}/>
+                <BookItem key={index} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
               ))}
             </ol>
          </div>
        }
        </div>
-    )
-  }
+     )
+    }
 }
 
 export default SearchBook
