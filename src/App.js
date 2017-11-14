@@ -37,21 +37,14 @@ class App extends React.Component {
 
   moveToShelf = (e,book) => {
     let shelf = e.target.value;
-    this.setState(state => {
-      if(!this.state.books.map(book => book.id).includes(book.id)){
-          book.shelf = shelf;
-          let copyBooks = Object.assign([], this.state.books).concat(book);
-          this.setState({books: copyBooks});
-      } else if (shelf === "none") {
-        book.shelf = shelf;
-        let books = this.state.books.filter(book => book.shelf !== shelf);
-        this.setState({books: books});
-      } else {
-        book.shelf = shelf;
-        this.setState(this.state);
-       }
-     });
-    BooksAPI.update(book, shelf);
+    if(shelf !== book.shelf){
+    BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf;
+      this.setState({
+        books: this.state.books.filter(b => b.id !== book.id).concat([book])
+      })
+      });
+    }
   }
 
   componentDidMount() {
