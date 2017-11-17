@@ -20,39 +20,27 @@ class App extends React.Component {
       */
      ],
      shelves: [
-       {
-         "id": "currentlyReading",
-         "name": "Currently Reading"
-       },
-       {
-         "id": "wantToRead",
-         "name": "Want to Read"
-       },
-       {
-         "id": "read",
-         "name":"Read"
-       }
+       {"id": "currentlyReading", "name": "Currently Reading"},
+       {"id": "wantToRead", "name": "Want to Read"},
+       {"id": "read", "name":"Read"}
      ]
   }
 
   moveToShelf = (e,book) => {
     let shelf = e.target.value;
     if(shelf !== book.shelf){
-    BooksAPI.update(book, shelf).then(() => {
+      BooksAPI.update(book, shelf);//!! .then(() => {
       book.shelf = shelf;
+      //!! put setState outside the callback of update !!
       this.setState({
         books: this.state.books.filter(b => b.id !== book.id).concat([book])
-      })
       });
     }
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState( state => {
-        state.books = books
-      });
-    })
+    //!! setState instead of mutating state !!
+    BooksAPI.getAll().then(books => this.setState({ books }));
   }
 
   render() {

@@ -6,9 +6,18 @@ import BookItem from "./BookItem";
 
 class ListBooks extends Component {
   render() {
+    /* !! more functional approach instead of compact statements like: !!
     const currentlyReadingList = this.props.books.filter(book => book.shelf==="currentlyReading");
-		const wantToReadList = this.props.books.filter(book => book.shelf==="wantToRead");
-		const readList = this.props.books.filter(book => book.shelf==="read");
+    */
+
+    const { books } = this.props
+
+    const filter   = books => shelf => books.filter(book => book. shelf === shelf)
+    const filterBy = filter(books)
+
+    const current = filterBy('currentlyReading')
+    const read    = filterBy('read')
+    const want    = filterBy('wantToRead')
 
     return(
       <div className="list-books">
@@ -21,13 +30,13 @@ class ListBooks extends Component {
             <h2 className="bookshelf-title">{shelf.name}</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-              {shelf.id === "currentlyReading" && currentlyReadingList.map((book) => (
+              {shelf.id === "currentlyReading" && current.map((book) => (
                 <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
               ))}
-              {shelf.id === "wantToRead" && wantToReadList.map((book) => (
+              {shelf.id === "wantToRead" && want.map((book) => (
                 <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
               ))}
-              {shelf.id === "read" && readList.map((book) => (
+              {shelf.id === "read" && read.map((book) => (
                 <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
               ))}
               </ol>
