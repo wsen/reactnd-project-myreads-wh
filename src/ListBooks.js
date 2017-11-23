@@ -1,15 +1,21 @@
-
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import BookShelf from "./BookShelf";
-//import PropTypes from 'prop-types';
 
-class ListBooks extends Component {
+class ListBooks extends React.Component {
+
+  static propTypes = {
+    books:        PropTypes.array,
+    moveToShelf:  PropTypes.func.isRequired,
+    shelves:      PropTypes.array.isRequired
+  }
+
   render() {
-    /* !! more functional approach instead of compact statements like: !!
-    const currentlyReadingList = this.props.books.filter(book => book.shelf==="currentlyReading");
-    */
+    { /*
+    // !! more functional approach instead of compact statements like: !!
+    // const currentlyReadingList = this.props.books.filter(book => book.shelf==="currentlyReading");
 
     const { books } = this.props
 
@@ -20,8 +26,8 @@ class ListBooks extends Component {
     const current = filterBy('currentlyReading')
     const read    = filterBy('read')
     const want    = filterBy('wantToRead')
-
-    //console.log( read )
+    console.log(this.props.shelves);
+    */ }
 
     return(
       <div className="list-books">
@@ -29,19 +35,32 @@ class ListBooks extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          <BookShelf books={current} title="Currently reading" moveToShelf={books.moveToShelf} />
-          <BookShelf books={want} title="Want to Read" moveToShelf={books.moveToShelf} />
-          <BookShelf books={read} title="Reading" moveToShelf={books.moveToShelf} />
+          <div>
+
+            {(this.props.shelves).map((shelf, index) =>
+              <BookShelf
+                key={index}
+                shelf={shelf}
+                books={this.props.books}
+                shelves={this.props.shelves}
+                moveToShelf={this.props.moveToShelf}
+              />
+            )}
+
+            { /*
+            <BookShelf books={want} title="Want to Read" moveToShelf={books.moveToShelf} />
+            <BookShelf books={read} title="Reading" moveToShelf={books.moveToShelf} />
+            // Problem: Handles just the book array here, without moveToShelf funtionallity
+            */}
+
+          </div>
         </div>
         <div className="open-search">
-          <Link className="open-search-link" to="/search">
-            <Link to="/search">Add a book</Link>
-          </Link>
+          <Link to="/search">Add a book</Link>
         </div>
       </div>
     )
   }
 }
-
 
 export default ListBooks

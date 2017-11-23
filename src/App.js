@@ -31,7 +31,7 @@ class App extends React.Component {
   //console.log(shelf);
 
   moveToShelf = (book, shelf) => {
-    if(shelf !== book.shelf){
+    if(this.state.shelf !== book.shelf){
       BooksAPI.update(book, shelf);
       book.shelf = shelf;
 

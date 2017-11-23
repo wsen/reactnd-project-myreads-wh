@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React from 'react';
 
 const BookItem = (props) => {
 		const { book } = props;
@@ -12,7 +12,7 @@ const BookItem = (props) => {
 			      <div className="book-shelf-changer">
 			        <select
 								value={book.shelf}
-							 	onChange={(e) => book.book.moveToShelf(book , e.target.value)}
+							 	onChange={e => props.moveToShelf(book, e.target.value)}
 								>
 			          <option value={book.shelf} disabled>Move to...</option>
 			          <option value="currentlyReading">Currently Reading</option>
