@@ -26,18 +26,16 @@ class ListBooks extends React.Component {
     const current = filterBy('currentlyReading')
     const read    = filterBy('read')
     const want    = filterBy('wantToRead')
-    console.log(this.props.shelves);
     */ }
 
     return(
       <div className="list-books">
         <div className="list-books-title">
-          <h1>MyReads</h1>
+          <h1>Werner&#39;s Bookshelf</h1>
         </div>
         <div className="list-books-content">
           <div>
-
-            {(this.props.shelves).map((shelf, index) =>
+            {(this.props.shelves.filter(s => s.id !== 'none')).map((shelf, index) =>
               <BookShelf
                 key={index}
                 shelf={shelf}
