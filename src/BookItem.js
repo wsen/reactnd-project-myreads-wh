@@ -23,6 +23,7 @@ const BookItem = (props) => {
 			      </div>
 			    </div>
 			    <div className="book-title">{book.title}</div>
+				  { /* TODO: treating book authors more distinguished (ex: more then 1, '')*/ }
 			    <div className="book-authors">{book.authors || "none"}</div>
 			  </div>
 			</li>

@@ -35,6 +35,7 @@ class ListBooks extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
+            { /* Iterate particulary over all shelves  */ }
             {(this.props.shelves.filter(s => s.id !== 'none')).map((shelf, index) =>
               <BookShelf
                 key={index}

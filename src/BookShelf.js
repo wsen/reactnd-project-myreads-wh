@@ -30,22 +30,3 @@ BookShelf.propTypes = {
 };
 
 export default BookShelf
-
-/*
-{(books.filter((b) => b.shelf === shelf.value)).map((book) => (
-        <BookItem
-          key={book.id}
-          book={book}
-          updateBook={props.updateBook}
-          shelves={props.shelves}
-
-          const filter   = books => shelf => books.filter(book => book.shelf === shelf)
-          const filterBy = filter(books)
-
-          const current = filterBy('currentlyReading')
-          const read    = filterBy('read')
-          const want    = filterBy('wantToRead')
-
-          key={book.id}
-          book={book}
-*/

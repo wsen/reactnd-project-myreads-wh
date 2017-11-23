@@ -28,8 +28,11 @@ class SearchBook extends React.Component {
 
 
    searchBooks = (query, booksID, booklist) => {
-     if(query)
-      BooksAPI.search(query,10).then( result => {
+     /* Clean Up Query */
+     const qy = query.trim();
+
+     if(qy)
+      BooksAPI.search(qy,20).then( result => {
         let searchedBooks = Array.from(result).map(book=> {
           if (!booksID.includes(book.id)) {
             book.shelf = "";
@@ -49,7 +52,7 @@ class SearchBook extends React.Component {
     this.setState({ query: query });
     this.searchBooks(query,books, booklist);
    }
-
+   // Catch the moveToShelf method and remove the added book here
    updateBookSearch = (book, shelf) => {
      this.setState( prev => ({
        searchedBooks: prev.searchedBooks.filter( b => b.id !== book.id )
