@@ -52,7 +52,8 @@ class SearchBook extends React.Component {
     this.setState({ query: query });
     this.searchBooks(query,books, booklist);
    }
-   // Catch the moveToShelf method and remove the added book here
+   // Catch the moveToShelf method and remove book here
+   // because it's added now to the booshelf
    updateBookSearch = (book, shelf) => {
      this.setState( prev => ({
        searchedBooks: prev.searchedBooks.filter( b => b.id !== book.id )
