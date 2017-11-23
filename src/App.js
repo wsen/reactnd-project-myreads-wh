@@ -25,16 +25,19 @@ class App extends React.Component {
        {"id": "read", "name":"Read"}
      ]
   }
+//!! .then(() => {
+//!! put setState outside the callback of update !!
+  //let shelf = e.target.value;
+  //console.log(shelf);
 
-  moveToShelf = (e,book) => {
-    let shelf = e.target.value;
+  moveToShelf = (book, shelf) => {
     if(shelf !== book.shelf){
-      BooksAPI.update(book, shelf);//!! .then(() => {
+      BooksAPI.update(book, shelf);
       book.shelf = shelf;
-      //!! put setState outside the callback of update !!
-      this.setState({
-        books: this.state.books.filter(b => b.id !== book.id).concat([book])
-      });
+
+      this.setState((state) => ({
+        books: (state.books.filter(b => b.id !== book.id).concat([book]))
+      }));
     }
   }
 
@@ -47,14 +50,17 @@ class App extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <ListBooks books={this.state.books} shelves={this.state.shelves} onMoveToShelf={this.moveToShelf}/>
+          <ListBooks
+            books={this.state.books}
+            moveToShelf={this.moveToShelf}
+            shelves={this.state.shelves}
+          />
         )}/>
         <Route path="/search" render={({ history }) => (
           <SearchBook
             books={this.state.books}
-            onMoveToShelf={(e,book) => {
-              this.moveToShelf(e,book);
-            }}
+            moveToShelf={this.moveToShelf}
+            shelves={this.shelves}
           />
         )}
         />

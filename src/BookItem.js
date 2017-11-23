@@ -1,8 +1,7 @@
 import React, { Component }  from 'react';
 
-class BookItem extends Component {
-	render(){
-		const { book } = this.props;
+const BookItem = (props) => {
+		const { book } = props;
 		const imageLinks = book.imageLinks ? book.imageLinks.smallThumbnail : "./icons/book_Cover_404.gif";
 
 		return(
@@ -11,8 +10,11 @@ class BookItem extends Component {
 			    <div className="book-top">
 			      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks})` }}></div>
 			      <div className="book-shelf-changer">
-			        <select onChange={(e)=> this.props.onMoveToShelf(e,book)} value={book.shelf}>
-			          <option value="" disabled>Move to...</option>
+			        <select
+								value={book.shelf}
+							 	onChange={(e) => book.book.moveToShelf(book , e.target.value)}
+								>
+			          <option value={book.shelf} disabled>Move to...</option>
 			          <option value="currentlyReading">Currently Reading</option>
 			          <option value="wantToRead">Want to Read</option>
 			          <option value="read">Read</option>
@@ -25,7 +27,6 @@ class BookItem extends Component {
 			  </div>
 			</li>
 		)
-	}
 }
-
+//onChange={(e) => book.moveToShelf(book , e.target.value)}
 export default BookItem;

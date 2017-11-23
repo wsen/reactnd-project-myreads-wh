@@ -15,12 +15,10 @@ class SearchBook extends Component {
     }
 
     componentDidMount(){
-     const { books } = this.props;
-     let booksIDOnShelf = books.map(book => book.id);
-     this.setState(state => {
-             state.booksOnShelf = books;
-             state.booksIDOnShelf = booksIDOnShelf;
-     });
+     const { books: booksOnShelf } = this.props
+     const booksIDOnShelf = booksOnShelf.map(book => book.id);
+
+     this.setState({ booksOnShelf, booksIDOnShelf })
     }
 
 
@@ -36,11 +34,9 @@ class SearchBook extends Component {
           }
           return book;
         });
-        this.setState( state => {
-          state.searchedBooks = searchedBooks;
-        });
+        this.setState({ searchedBooks });
      })
-     this.setState({ query: query});
+    this.setState({ query });
    }
 
    searchKeywords = (e, books, booklist) => {
@@ -61,6 +57,7 @@ class SearchBook extends Component {
                  type="text"
                  placeholder="Search by title or author"
                  value={this.state.query}
+                 
                  onChange={ e => {this.searchBooks(e.target.value, booksIDOnShelf, booksOnShelf)}}
                />
             </div>

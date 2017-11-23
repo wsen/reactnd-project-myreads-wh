@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import BookItem from "./BookItem";
+
+import BookShelf from "./BookShelf";
 //import PropTypes from 'prop-types';
 
 class ListBooks extends Component {
@@ -12,12 +13,15 @@ class ListBooks extends Component {
 
     const { books } = this.props
 
-    const filter   = books => shelf => books.filter(book => book. shelf === shelf)
+    const filter   = books => shelf => books.filter(book => book.shelf === shelf)
+
     const filterBy = filter(books)
 
     const current = filterBy('currentlyReading')
     const read    = filterBy('read')
     const want    = filterBy('wantToRead')
+
+    //console.log( read )
 
     return(
       <div className="list-books">
@@ -25,24 +29,9 @@ class ListBooks extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-        {this.props.shelves.map(shelf => (
-          <div key={shelf.id} className="bookshelf">
-            <h2 className="bookshelf-title">{shelf.name}</h2>
-            <div className="bookshelf-books">
-              <ol className="books-grid">
-              {shelf.id === "currentlyReading" && current.map((book) => (
-                <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
-              ))}
-              {shelf.id === "wantToRead" && want.map((book) => (
-                <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
-              ))}
-              {shelf.id === "read" && read.map((book) => (
-                <BookItem key={book.id} book={book} onMoveToShelf={this.props.onMoveToShelf}/>
-              ))}
-              </ol>
-            </div>
-          </div>
-        ))}
+          <BookShelf books={current} title="Currently reading" moveToShelf={books.moveToShelf} />
+          <BookShelf books={want} title="Want to Read" moveToShelf={books.moveToShelf} />
+          <BookShelf books={read} title="Reading" moveToShelf={books.moveToShelf} />
         </div>
         <div className="open-search">
           <Link className="open-search-link" to="/search">
