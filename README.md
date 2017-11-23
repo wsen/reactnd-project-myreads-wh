@@ -24,7 +24,7 @@ To get started developing right away:
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
     ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
     ├── BookItem.js # NEW: Sort of JSX template for displaying particular book details within ListBooks.js.
-    ├── BookShelf.js # NEW: Organizes all BookItems in their shelves.
+    ├── BookShelf.js # NEW: Organizes all shelf specific BookItems in their shelves.
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
     │   ├── arrow-back.svg
