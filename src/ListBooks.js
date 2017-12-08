@@ -6,6 +6,8 @@ import BookShelf from "./BookShelf";
 
 class ListBooks extends React.Component {
 
+  // in this way it would be rejectet by eslint
+  //TODO: Needs to be more specified
   static propTypes = {
     books:        PropTypes.array,
     moveToShelf:  PropTypes.func.isRequired,

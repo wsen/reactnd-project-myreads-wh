@@ -21,7 +21,8 @@ const BookShelf = (props) => (
     </div>
 );
 
-
+// in this way it would be rejectet by eslint
+//TODO: Needs to be more specified
 BookShelf.propTypes = {
   books: PropTypes.array.isRequired,
   shelves: PropTypes.array.isRequired,

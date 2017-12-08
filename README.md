@@ -2,6 +2,17 @@
 
 Based on the [starter template](https://github.com/udacity/reactnd-project-myreads-starter) I added interactivity to the app by refactoring the static code in this template and creating new components.
 
+## Development decisions & additional features
+
+* All information regarding shelves is maintained in a state
+named `shelves` inside the `BooksApp` component and is treated in the
+relevant components.
+* The SearchBook (or search) page will display all books.
+* After choosing a shelf for a book's position, the book will be removed
+from the search results temporarily until the next search.
+Therefore the user has a better view of those books
+within the actual search list which are still not at the bookshelf.
+
 ## TL;DR
 
 To get started developing right away:
@@ -20,7 +31,7 @@ To get started developing right away:
 │   └── index.html # DO NOT MODIFY
 └── src
     ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
+    ├── BooksApp.js # This is the root of your app. Contains static HTML right now.
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
     ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
     ├── BookItem.js # NEW: Sort of JSX template for displaying particular book details within ListBooks.js.
@@ -92,3 +103,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Refering to the Udacity starter code, pull requests will not be accepted.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## MIT License
+
+Copyright (c) [2017] [wsen]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

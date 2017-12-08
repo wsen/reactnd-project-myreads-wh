@@ -5,7 +5,7 @@ import './App.css'
 import ListBooks  from './ListBooks'
 import SearchBook from './SearchBook'
 
-class App extends React.Component {
+class BooksApp extends React.Component {
   state = {
      books: [
        /*
@@ -25,10 +25,6 @@ class App extends React.Component {
        {"id": "read", "name":"Read"}
      ]
   }
-//!! .then(() => {
-//!! put setState outside the callback of update !!
-  //let shelf = e.target.value;
-  //console.log(shelf);
 
   moveToShelf = (book, shelf) => {
     if(this.state.shelf !== book.shelf){
@@ -69,4 +65,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default BooksApp

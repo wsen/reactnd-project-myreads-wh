@@ -29,5 +29,6 @@ const BookItem = (props) => {
 			</li>
 		)
 }
-//onChange={(e) => book.moveToShelf(book , e.target.value)}
+//<option value="none">None</option>
+//TODO: Action needs to be more specified
 export default BookItem;
